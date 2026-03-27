@@ -13,10 +13,12 @@ The goal is not to redefine Scripture Burrito. Instead, this repo narrows a few 
 - `identification.abbreviation` comes from the Resource Container manifest `identifier`.
 - `identification.primary` is keyed first by the ID authority and then by the repository path, such as `WA-Catalog/en_ulb`.
 - `identification.primary` revisions are always `latest`.
-- `meta.defaultLocale` is `en`.
+- `meta.defaultLocale` is `en`. This is specifying that all localized text within the burrito must at least have a value for English.
+- Where possible, localized text fields should also include an entry for the language of the content of this burrito. In the case of a Heart Language, it would also be benefitial to include localized text for the corresponding Gateway Language.
+  - This localized text is primarily for User Interface/display localization.
 - Exactly one language entry is allowed.
 - Each language entry must include `tag`, `name`, and `scriptDirection`.
-- Language `name` must include an `en` localized value.
+- Language `name` must include an `en` localized value which should be the anglicized field from `langnames.json`.
 - `confidential` is `false` unless a burrito is manually marked otherwise.
 - `meta.generator` must include both `softwareName` and `softwareVersion`.
 - Scripture text flavor metadata is fixed to `projectType: standard`, `translationType: newTranslation`, and `audience: common`.
