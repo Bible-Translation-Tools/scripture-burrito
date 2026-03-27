@@ -38,7 +38,6 @@ For a Resource Container bundle, the mapping to Scripture Burrito is usually:
 | `dublin_core.format` | flavor-specific metadata and ingredient MIME types |
 | `projects` / files in the container | `ingredients` and flavor-specific scope data |
 
-The [WA-Catalog/en_ulb](https://content.bibletranslationtools.org/WA-Catalog/en_ulb) repository is a good real-world example of an RC repository that maps naturally to a Scripture Burrito.
 
 ## Building
 
