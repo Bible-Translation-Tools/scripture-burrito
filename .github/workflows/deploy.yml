@@ -2,7 +2,7 @@ name: Deploy Sphinx docs to GitHub Pages
 
 on:
   push:
-    branches: [main] # Or your default branch
+    branches: [wycliffe-associates] # Or your default branch
 
 permissions:
   contents: read
