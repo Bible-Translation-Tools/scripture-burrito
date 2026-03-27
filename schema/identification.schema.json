@@ -8,7 +8,40 @@
     "definitions": {
         "revisionString": {
             "type": "string",
-            "pattern": "^[0-9A-Za-z]([0-9A-Za-z_.:\\-]{0,62}[0-9A-Za-z])?$"
+            "const": "latest"
+        },
+        "repositoryPath": {
+            "type": "string",
+            "pattern": "^[^\\s/]+/[^\\s/]+$"
+        },
+        "repositoryRevision": {
+            "type": "object",
+            "properties": {
+                "revision": {
+                    "$ref": "#/definitions/revisionString"
+                }
+            },
+            "required": ["revision"],
+            "additionalProperties": false
+        },
+        "authorityRepositories": {
+            "type": "object",
+            "minProperties": 1,
+            "maxProperties": 1,
+            "propertyNames": {
+                "$ref": "common.schema.json#/definitions/idAuthorityLabel"
+            },
+            "additionalProperties": {
+                "type": "object",
+                "minProperties": 1,
+                "maxProperties": 1,
+                "propertyNames": {
+                    "$ref": "#/definitions/repositoryPath"
+                },
+                "additionalProperties": {
+                    "$ref": "#/definitions/repositoryRevision"
+                }
+            }
         }
     },
     "properties": {
@@ -22,45 +55,14 @@
             "$ref": "common.schema.json#/definitions/localizedText"
         },
         "primary": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {
-                    "type": "object",
-                    "revision": {
-                        "$ref": "common.schema.json#/definitions/revisionString"
-                    },
-                    "timestamp": {
-                        "$ref": "common.schema.json#/definitions/timestamp"
-                    },
-                    "required": ["revision", "timestamp"]
-                }
-            },
-            "minProperties": 1,
-            "maxProperties": 1,
+            "$ref": "#/definitions/authorityRepositories",
             "description": "Contains the primary authority and identification information."
         },
         "upstream": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object",
-                        "revision": {
-                            "$ref": "common.schema.json#/definitions/revisionString"
-                        },
-                        "timestamp": {
-                            "$ref": "common.schema.json#/definitions/timestamp"
-                        },
-                        "required": ["revision", "timestamp"]
-                    }
-                }
-            },
+            "$ref": "#/definitions/authorityRepositories",
             "description": "Contains the upstream authority and identification information."
         }
     },
-    "required": ["name", "primary"],
+    "required": ["name", "abbreviation", "primary"],
     "additionalProperties": false
 }

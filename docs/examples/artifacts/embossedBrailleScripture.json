@@ -13,19 +13,18 @@
     "comments": ["Braille test"]
   },
   "idAuthorities": {
-    "dbl": {
-      "id": "https://thedigitalbiblelibrary.org",
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
       "name": {
-        "en": "The Digital Bible Library"
+        "en": "Wycliffe Associates Content Services"
       }
     }
   },
   "identification": {
     "primary": {
-      "dbl": {
-        "865ab834004f4186": {
-          "revision": "3",
-          "timestamp": "2019-07-17T08:00:56.467963+00:00"
+      "wacs": {
+        "WA-Catalog/en_webbe_braille": {
+          "revision": "latest"
         }
       }
     },
@@ -44,7 +43,8 @@
       "tag": "en",
       "name": {
         "en": "English"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "relationships": [
@@ -94,7 +94,7 @@
       }
     }
   },
-  "confidential": true,
+  "confidential": false,
   "agencies": [
     {
       "id": "dbl::b78a0b882a8a372c837d68b7",

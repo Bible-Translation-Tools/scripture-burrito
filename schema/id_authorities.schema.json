@@ -4,21 +4,32 @@
     "$$target": "id_authorities.schema.json",
     "title": "idAuthorities",
     "type": "object",
-    "description": "Declares one or more identity authorities which may later be referred to using identifier prefixes.",
+    "description": "Declares the single identity authority used by this burrito. Online burritos use WACS; offline burritos use the app that created them.",
+    "propertyNames": {
+        "$ref": "common.schema.json#/definitions/idAuthorityLabel"
+    },
     "additionalProperties": {
         "type": "object",
         "properties": {
             "id": {
-                "$ref": "common.schema.json#/definitions/url"
+                "oneOf": [
+                    {
+                        "$ref": "common.schema.json#/definitions/url"
+                    },
+                    {
+                        "type": "string",
+                        "pattern": "^(?!.*://)\\S+$"
+                    }
+                ],
+                "description": "The authority URL when content is online, or an offline app slug when content is created locally."
             },
             "name": {
                 "$ref": "common.schema.json#/definitions/localizedText"
             }
         },
-        "propertyNames": {
-            "$ref": "common.schema.json#/definitions/idAuthorityLabel"
-        },
-        "minProperties": 1
+        "required": ["id", "name"],
+        "additionalProperties": false
     },
-    "minProperties": 1
+    "minProperties": 1,
+    "maxProperties": 1
 }

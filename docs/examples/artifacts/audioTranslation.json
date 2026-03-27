@@ -15,19 +15,18 @@
     ]
   },
   "idAuthorities": {
-    "dbl": {
-      "id": "https://thedigitalbiblelibrary.org",
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
       "name": {
-        "en": "The Digital Bible Library"
+        "en": "Wycliffe Associates Content Services"
       }
     }
   },
   "identification": {
     "primary": {
-      "dbl": {
-        "6e0d81a24efbb679": {
-          "revision": "9",
-          "timestamp": "2018-03-15T19:38:40.762935+00:00"
+      "wacs": {
+        "WA-Catalog/en_audio_bible": {
+          "revision": "latest"
         }
       }
     },
@@ -46,7 +45,8 @@
       "tag": "en",
       "name": {
         "en": "English"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "type": {
@@ -71,7 +71,7 @@
       }
     }
   },
-  "confidential": true,
+  "confidential": false,
   "agencies": [
     {
       "id": "dbl::54650cfa5117ad690fb05fb6",

@@ -12,27 +12,32 @@
     "defaultLocale": "en"
   },
   "idAuthorities": {
-    "paint-store": {
-      "id": "http://localhost:8080"
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
+      "name": {
+        "en": "Wycliffe Associates Content Services"
+      }
     }
   },
   "identification": {
     "name": {
       "en": "My First Fingerpainted Bible"
     },
+    "abbreviation": {
+      "en": "fingerpainted"
+    },
     "description": {
       "en": "Someone said we needed digital Bibles and I thought I could use my digits to... oh, never mind"
     },
     "primary": {
-      "paint-store": {
-        "0123456789abcdef": {
-          "revision": "1",
-          "timestamp": "2020-03-31T09:04:10.3+02:00"
+      "wacs": {
+        "WA-Catalog/en_fingerpainted_bible": {
+          "revision": "latest"
         }
       }
     }
   },
-  "confidential": true,
+  "confidential": false,
   "type": {
     "flavorType": {
       "name": "scripture",
@@ -58,7 +63,8 @@
       "tag": "en",
       "name": {
         "en": "English"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "targetAreas": [

@@ -12,22 +12,27 @@
     "defaultLocale": "en"
   },
   "idAuthorities": {
-    "bcs": {
-      "id": "http://registry.bridgeconn.com"
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
+      "name": {
+        "en": "Wycliffe Associates Content Services"
+      }
     }
   },
   "identification": {
     "name": {
       "en": "Hindi IRV - UGNT Interlinear"
     },
+    "abbreviation": {
+      "en": "hi-irv-ugnt"
+    },
     "description": {
       "en": "Word level alignment of Hindi IRV v.4 with UGNT Text"
     },
     "primary": {
-      "bcs": {
-        "hin.irv-ugnt": {
-          "revision": "1",
-          "timestamp": "2020-03-31T09:04:10.3+02:00"
+      "wacs": {
+        "WA-Catalog/hi_irv_ugnt": {
+          "revision": "latest"
         }
       }
     }
@@ -81,7 +86,8 @@
       "name": {
         "en": "English",
         "hi": "अंग्रेज़ी"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "targetAreas": [

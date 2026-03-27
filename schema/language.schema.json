@@ -11,7 +11,20 @@
             "examples": ["hi", "es-419"]
         },
         "name": {
-            "$ref": "common.schema.json#/definitions/localizedText"
+            "allOf": [
+                {
+                    "$ref": "common.schema.json#/definitions/localizedText"
+                },
+                {
+                    "type": "object",
+                    "required": ["en"],
+                    "properties": {
+                        "en": {
+                            "$ref": "common.schema.json#/definitions/trimmedText"
+                        }
+                    }
+                }
+            ]
         },
         "numberingSystem": {
             "$ref": "numbering_system.schema.json"
@@ -24,6 +37,6 @@
             "enum": ["ltr", "rtl"]
         }
     },
-    "required": ["tag", "name"],
+    "required": ["tag", "name", "scriptDirection"],
     "additionalProperties": false
 }

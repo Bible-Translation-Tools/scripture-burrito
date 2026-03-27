@@ -12,23 +12,16 @@
         "projectType": {
             "type": "string",
             "enum": [
-                "standard",
-                "daughter",
-                "studyBible",
-                "studyBibleAdditions",
-                "backTranslation",
-                "auxiliary",
-                "transliterationManual",
-                "transliterationWithEncoder"
+                "standard"
             ]
         },
         "translationType": {
             "type": "string",
-            "enum": ["firstTranslation", "newTranslation", "revision", "studyOrHelpMaterial"]
+            "enum": ["newTranslation"]
         },
         "audience": {
             "type": "string",
-            "enum": ["basic", "common", "common-literary", "literary", "liturgical", "children"]
+            "enum": ["common"]
         },
         "usfmVersion": {
             "type": "string",

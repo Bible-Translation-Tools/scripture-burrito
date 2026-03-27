@@ -12,8 +12,11 @@
     "defaultLocale": "en"
   },
   "idAuthorities": {
-    "dcs": {
-      "id": "https://git.door43.org"
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
+      "name": {
+        "en": "Wycliffe Associates Content Services"
+      }
     }
   },
   "identification": {
@@ -27,15 +30,14 @@
       "en": "unrestricted visual Bible stories"
     },
     "primary": {
-      "dcs": {
-        "unfoldingword:en_obs": {
-          "revision": "94263a75308f91567c3c77ba862d53cbf6c80378",
-          "timestamp": "2020-03-31T09:04:10.3+02:00"
+      "wacs": {
+        "WA-Catalog/en_obs": {
+          "revision": "latest"
         }
       }
     }
   },
-  "confidential": true,
+  "confidential": false,
   "type": {
     "flavorType": {
       "name": "gloss",
@@ -201,7 +203,8 @@
       "tag": "en",
       "name": {
         "en": "English"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "targetAreas": [

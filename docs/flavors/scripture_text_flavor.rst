@@ -82,55 +82,19 @@ Metadata Flavor Details
 projectType
 -----------
 
-This is one of
-
-* standard
-
-* daughter
-
-* studyBible
-
-* studyBibleAdditions
-
-* backTranslation
-
-* auxiliary
-
-* transliterationManual
-
-* transliterationWithEncoder
+Wycliffe Associates standardizes this field to ``standard``.
 
 ---------------
 translationType
 ---------------
 
-This is one of
-
-* First
-
-* New
-
-* Revision
-
-* Study / Help Material
+Wycliffe Associates standardizes this field to ``newTranslation``.
 
 --------
 audience
 --------
 
-This is one of
-
-* Basic
-
-* Common
-
-* Common - Literary
-
-* Literary
-
-* Liturgical
-
-* Children
+Wycliffe Associates standardizes this field to ``common``.
 
 -----------
 usfmVersion

@@ -1,87 +1,75 @@
-master:[![Documentation Status](https://readthedocs.org/projects/scripture-burrito/badge/?version=latest)](https://docs.burrito.bible/en/latest/?badge=latest)
-[![CI](https://github.com/bible-technology/scripture-burrito/workflows/CI/badge.svg?branch=master)](https://github.com/bible-technology/scripture-burrito/actions?query=branch%3Amaster)
+# Scripture Burrito for Wycliffe Associates
 
-develop:[![Documentation Status](https://readthedocs.org/projects/scripture-burrito/badge/?version=develop)](https://docs.burrito.bible/en/latest/?badge=develop)
-[![CI](https://github.com/bible-technology/scripture-burrito/workflows/CI/badge.svg?branch=develop)](https://github.com/bible-technology/scripture-burrito/actions?query=branch%3Adevelop)
+This fork documents the Wycliffe Associates usage profile for Scripture Burrito and keeps the validation rules in sync with that profile.
 
-# Scripture Burrito Documentation
+The goal is not to redefine Scripture Burrito. Instead, this repo narrows a few choices so that WACS tools and repositories express metadata consistently.
 
-A data interchange format for Bible-centric content.
+## WACS Usage Standard
 
-See https://docs.burrito.bible/ (or https://scripture-burrito.readthedocs.io/) for the documentation, this repo is the source files.
+- `idAuthorities` contains exactly one authority per burrito.
+- When a burrito is online-capable, that authority is Wycliffe Associates Content Services at `https://content.bibletranslationtools.org`.
+- When a burrito is created offline, the authority is the app that created it, such as `Orature` or `BTT-Writer`.
+- `identification.name` comes from the Resource Container manifest `title`.
+- `identification.abbreviation` comes from the Resource Container manifest `identifier`.
+- `identification.primary` is keyed first by the ID authority and then by the repository path, such as `WA-Catalog/en_ulb`.
+- `identification.primary` revisions are always `latest`.
+- `meta.defaultLocale` is `en`.
+- Exactly one language entry is allowed.
+- Each language entry must include `tag`, `name`, and `scriptDirection`.
+- Language `name` must include an `en` localized value.
+- `confidential` is `false` unless a burrito is manually marked otherwise.
+- `meta.generator` must include both `softwareName` and `softwareVersion`.
+- Scripture text flavor metadata is fixed to `projectType: standard`, `translationType: newTranslation`, and `audience: common`.
 
-If you want to suggest a change, please fork this repo and create a PR, or create an Issue.
+## Resource Container Mapping
+
+Resource Container is documented at [resource-container.readthedocs.io](https://resource-container.readthedocs.io/en/latest/).
+
+For a Resource Container bundle, the mapping to Scripture Burrito is usually:
+
+| Resource Container | Scripture Burrito |
+| --- | --- |
+| `manifest.yaml` | `metadata.json` |
+| `dublin_core.title` | `identification.name` |
+| `dublin_core.identifier` | `identification.abbreviation` |
+| `dublin_core.language.identifier` | `languages[0].tag` |
+| `dublin_core.language.title` | `languages[0].name.en` |
+| `dublin_core.language.direction` | `languages[0].scriptDirection` |
+| `dublin_core.format` | flavor-specific metadata and ingredient MIME types |
+| `projects` / files in the container | `ingredients` and flavor-specific scope data |
+
+The [WA-Catalog/en_ulb](https://content.bibletranslationtools.org/WA-Catalog/en_ulb) repository is a good real-world example of an RC repository that maps naturally to a Scripture Burrito.
 
 ## Building
 
-Install the sphinx engine
+Install the Sphinx tooling:
 
-    sudo apt-get install python-sphinx
-    pip install sphinx-jsonschema
+```bash
+sudo apt-get install python-sphinx
+pip install sphinx-jsonschema
+```
 
-Then run the build script from the docs/ directory.
+Then build the docs from the `docs/` directory:
 
-> NOTE: this top level makefile is just a shorcut to building the html.
-
-    make
-
-## Documentation Format
-
-The docs are written in [reStructuredText](http://www.sphinx-doc.org/en/master/rest.html), processed by [Sphinx](http://www.sphinx-doc.org/en/master/index.html), and hosted online by [Read the Docs](https://readthedocs.org/).
-
-See the [reStructuredText Primer](http://www.sphinx-doc.org/en/master/rest.html) and the [Docutils reStructuredText Directives](http://docutils.sourceforge.net/docs/ref/rst/directives.html) documentation to learn how to use the syntax.
-
-## Schema Documentation
-
-The specific schema documentation is generated from the schema itself using [sphinx-jsonschema](https://sphinx-jsonschema.readthedocs.io/en/latest/). Take special care to define the `title` and `description` attributes well as they will be the primary method of documentation for the specification. Also, wherever possible, include `examples` as that aids in comprehension.
-
-One special note, any section that needs to be linked to from another section should have a special `$$target` attribute as well as a `title` attribute for sphinx-jsonschema to work properly.
-
-Also, note that there is a script which automatically takes the schema and creates the `.rst` files for Sphinx to process. This should be done anytime changes are made to the schema (and should probably be part of the sphinx builder).
-
-    cd docs/schema_docs
-    ./gen_schema_docs.sh
-
-A similar script is used for the examples.
-
-    cd docs/examples
-    ./gen_example_docs.sh
+```bash
+make
+```
 
 ## Validation
 
-### Scripted
+Run the Python validator against the example metadata:
 
-An [automated Github Action](https://github.com/bible-technology/scripture-burrito/blob/jag3773-patch-1/.github/workflows/main.yml) runs on each push that validates the metadata samples. This uses both a Python and JavaScript utility included in `code/` to validate JSON documents against the schema. You can run these locally as well.
-
-The Python script requires `jsonschema` (run `pip install jsonschema`) and may be run as follows:
-
-    python code/validate.py docs/examples/artifacts/*.json
-
-The JavaScript script requires `node` and `ajv` to run.
-
-    npm install ajv
-    node code/validate.js metadata docs/examples/artifacts/*.json
-
-### For Real Time Editing
-
-The VS Code [documentation](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings) explains how to setup VS Code for real time validation of JSON files using a schema.
-
-In short, create a `.vscode/settings.json` file in your `scripture-burrito` working directory with the following:
-
-```
-{
-    "json.schemas": [
-        {
-            "fileMatch": [
-                "*.json"
-            ],
-            "url": "file:///Users/jesse/vcs/scripture-burrito/schema/metadata.schema.json"
-        }
-    ]
-}
+```bash
+python3 code/validate.py docs/examples/artifacts/*.json
 ```
 
-Of course, use the actual local path on _your system_ for `metadata.schema.json`.
+The JavaScript validator uses `ajv`:
 
-To test, open up `schema/scriptureText.json` and make something invalid, and see the result, like this:
-![image](https://user-images.githubusercontent.com/194842/71215968-6ced3300-22b9-11ea-95a7-ca84de8287da.png)
+```bash
+npm install
+node code/validate.js metadata docs/examples/artifacts/*.json
+```
+
+## Documentation Format
+
+The docs are written in [reStructuredText](https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html), processed by [Sphinx](https://www.sphinx-doc.org/), and generated with `sphinx-jsonschema` where possible.

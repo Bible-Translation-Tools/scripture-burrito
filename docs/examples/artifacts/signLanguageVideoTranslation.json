@@ -13,19 +13,18 @@
     "comments": ["First submit updated metadata and mpg files"]
   },
   "idAuthorities": {
-    "dbl": {
-      "id": "https://thedigitalbiblelibrary.org",
+    "wacs": {
+      "id": "https://content.bibletranslationtools.org",
       "name": {
-        "en": "The Digital Bible Library"
+        "en": "Wycliffe Associates Content Services"
       }
     }
   },
   "identification": {
     "primary": {
-      "dbl": {
-        "acce3721073e44da": {
-          "revision": "2",
-          "timestamp": "2019-12-10T15:44:10.641544+00:00"
+      "wacs": {
+        "WA-Catalog/fr_luke_sign_language": {
+          "revision": "latest"
         }
       }
     },
@@ -36,6 +35,9 @@
     "description": {
       "en": "The French Bible publishes  the first translation of a major historical and cultural work - Luke's Gospel - in French sign language.",
       "lsf": "L'Alliance biblique française met à disposition du public sourd, malentendant et entendant la première traduction d'un texte majeure du patrimoine de l'humanité - l'Evangile de Luc - en langue des signes."
+    },
+    "abbreviation": {
+      "en": "fsl"
     }
   },
   "languages": [
@@ -44,7 +46,8 @@
       "name": {
         "en": "French Sign Language",
         "lsf": "langue des signes française"
-      }
+      },
+      "scriptDirection": "ltr"
     }
   ],
   "type": {
@@ -69,7 +72,7 @@
       }
     }
   },
-  "confidential": true,
+  "confidential": false,
   "agencies": [
     {
       "id": "dbl::54650cdf5117ad687c9b5189",
