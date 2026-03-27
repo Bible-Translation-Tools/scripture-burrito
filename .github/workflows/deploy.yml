@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install sphinx sphinx-rtd-theme # Add other themes/extensions here
+          pip install sphinx sphinx-rtd-theme sphinx-jsonschema
 
       - name: Build HTML
         run: sphinx-build -b html docs/ docs/_build/html
