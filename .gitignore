@@ -22,3 +22,5 @@ docs/schema/metadata.rng
 
 # Mac OSX artifacts
 .DS_Store
+.venv
+docs/_build
