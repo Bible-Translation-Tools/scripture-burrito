@@ -19,9 +19,12 @@
             "properties": {
                 "revision": {
                     "$ref": "#/definitions/revisionString"
+                },
+                "timestamp": {
+                    "$ref": "common.schema.json#/definitions/timestamp"
                 }
             },
-            "required": ["revision"],
+            "required": ["revision",  "timestamp"],
             "additionalProperties": false
         },
         "authorityRepositories": {
